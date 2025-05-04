@@ -1,0 +1,10 @@
+{
+    "questions":[
+        {"question":"What city is known as the 'Windy City'"},{"choices":["New York","Kansas City","Nashville","Chicago"]},{"answer":3},
+        {"question":"Greek spanokopita is filled with feta and which leafy green?"},{"choices":["Spinach","Kale","Cilantro","Parsley"]},{"answer":0},
+        {"question":"Which space telescope was launched by NASA in 1990?"},{"choices":["Bubble","Hubble","Squabble","Nibble"]},{"answer":2},
+        {"question":"What is the name for a period of two weeks"},{"choices":["Midnight","Movienight","Fortnight","Saturday Night"]},{"answer":2},
+        {"question":"What is the official language of Brazil?"},{"choices":["Spanish","Portuguese","Hindi","Portuguese"]},{"answer":2},
+        {"question":"How many time zones are there in the world?"},{"choices":[12,48,24,18]},{"answer":2}
+    ]
+}

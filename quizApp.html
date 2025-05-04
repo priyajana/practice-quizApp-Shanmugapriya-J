@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--Refernces 
+https://www.geeksforgeeks.org/create-a-quiz-app-with-timer-using-html-css-and-javascript/
+
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+       #parent, #qdiv 
+        {
+            margin: auto;
+            width: 20%;
+            border: 3px solid #73AD21;
+            padding: 10px;
+            text-align: center;
+        }
+    
+        button
+        {
+            margin:10px;
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <div id="parent">
+        
+        <label id="prompt">Are you ready for the quiz??</label></br></br>
+        <input type="button" value="Let's go!" id="start">
+       
+    </div>
+    <script>
+        let startQuiz = document.getElementById("start");
+        let qList = [
+        {"question":"What city is known as the 'Windy City' ?","choices":["New York","Kansas City","Nashville","Chicago"],'answer':3},
+        {"question":"Greek spanokopita is filled with feta and which leafy green?","choices":["Spinach","Kale","Cilantro","Parsley"],"answer":0},
+        {"question":"Which space telescope was launched by NASA in 1990?","choices":["Bubble","Hubble","Squabble","Nibble"],"answer":1},
+        {"question":"What is the name for a period of two weeks","choices":["Midnight","Movienight","Fortnight","Saturday Night"],"answer":2},
+        {"question":"What is the official language of Brazil?","choices":["Spanish","Portuguese","Hindi","French"],"answer":1},
+        {"question":"How many time zones are there in the world?","choices":[12,48,24,18],"answer":2}];
+        
+        
+        let parent = document.getElementById("parent");
+        //An element to display feedback after an answer is selected
+        let feedback = document.createElement("label");
+        let count = 0;
+        
+        function checkAnswer(userChoice,answer)
+        {
+            feedback.innerHTML = "";
+            let allbtns = document.getElementsByClassName("choicesBtn");
+            for(btn of allbtns){btn.disabled = true;}
+            
+                if(userChoice == answer){
+                    feedback.style.color = "green";
+                    feedback.innerHTML = "Correct !";
+                }
+                else
+                {
+                    feedback.style.color = "red";
+                    feedback.innerHTML="Incorrect choice!";
+                }
+                
+                parent.appendChild(feedback);
+        }
+
+        startQuiz.addEventListener("click",loadQuestion);
+       
+        function loadQuestion(){
+                console.log(count);
+                if(count == qList.length){count=0;}
+                if(document.getElementById("prompt")){
+                    startQuiz.remove();
+                    document.getElementById("prompt").remove();
+                }  
+            
+            //create label for The question text.
+            let qdiv = document.createElement("div");
+            let question = document.createElement("label");
+              question.innerHTML=qList[count]["question"]+"</br>";
+              qdiv.appendChild(question);
+           
+            //Four buttons for answer choices.
+            qList[count]["choices"].forEach(element => {
+                const button = document.createElement('button');
+                button.innerHTML = element;
+                let answerIndex = qList[count]["answer"];
+                button.className = "choicesBtn";
+                button.onclick  = ()=> checkAnswer(button.innerHTML,qList[count]["choices"][answerIndex]);
+                qdiv.appendChild(button);
+            });
+            const nextBtn = document.createElement('button');
+            nextBtn.innerHTML = "Next";
+            nextBtn.onclick=()=>{
+                qdiv.innerHTML = "";
+                feedback.innerHTML = "";
+                loadQuestion(count++);
+            }
+            qdiv.appendChild(nextBtn);
+            parent.appendChild(qdiv);
+            
+        }
+       
+       
+        
+    </script>
+</body>
+
+</html>
